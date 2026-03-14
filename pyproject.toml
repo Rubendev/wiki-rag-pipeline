@@ -1,7 +1,7 @@
 [project]
-name = "wiki-rag"
+name = "wiki-rag-pipeline"
 version = "0.1.0"
-description = "Add your description here"
+description = "RAG-Powered Q&A System over a focused Wikipedia subset"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
