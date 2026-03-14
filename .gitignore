@@ -11,9 +11,8 @@ wheels/
 
 # DAta
 data/
-# .env
 
-# Upload .env template
+# Environment variables
 .env
 
 # Other
