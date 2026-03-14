@@ -13,6 +13,8 @@ wheels/
 data/
 # .env
 
+# Upload .env template
+.env
+
 # Other
 *.python-version
-.env
