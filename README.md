@@ -132,7 +132,7 @@ python src/app.py
 
 ---
 
-## 7) Future improvements on limitations
+## 8) Future improvements on limitations
 
 Addressing current limitations and pipeline improvements
 - Very strict constraint prompt - doesn't allow knowledge outside of context
