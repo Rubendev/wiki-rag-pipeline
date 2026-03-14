@@ -14,6 +14,5 @@ data/
 # .env
 
 # Other
-uv.lock
 *.python-version
 .env
