@@ -36,7 +36,6 @@ if __name__ == "__main__":
     setup_rag()
     # Manual evaluation (Faithfulness)
     if "-evaluate" in sys.argv or "--evaluate" in sys.argv:
-        import pdb; pdb.set_trace()
         results = run_genai(EVAL_QUESTIONS)
         for i, result in enumerate(results):
             result['ground_truth'] = EVAL_DATA[i]['ground_truth']
