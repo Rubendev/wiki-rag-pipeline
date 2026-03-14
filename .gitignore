@@ -16,3 +16,4 @@ data/
 # Other
 uv.lock
 *.python-version
+.env
