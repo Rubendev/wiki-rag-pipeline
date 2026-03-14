@@ -87,7 +87,7 @@ Evaluated both manually and using the same Cloud-based LLM used for generation t
 | Q3 | AI regulation vs AI alignment | 1 | 0.5 | Good comparison between chunks |
 | Q4 | Strictest AI regulation | 1 | 1 | No answer out of context |
 | Q5 | Creators of AlphaEvolve | 1 | 1 | Answers in context and refuses out of context |
-| **Average (manual)** |  | **-** | **1.0** | Baseline with constraint prompt |
+| **Average (manual)** |  | **1** | **-** | Baseline with constraint prompt |
 
 ### Interpretation
 The constraint promt is very strict and refuses any out of context information.
