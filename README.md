@@ -44,18 +44,20 @@ Wikipedia articles
 
 ### Dataset choice
 **Option B: Wikipedia subset covering AGI**  
-Wikipedia has a standard API for data retrieval and doesn’t contain complex content (like code extracts) requiring more advanced RAG and format chunking.
+Wikipedia has a standard API for data retrieval and doesn’t contain complex content (like code extracts) requiring more advanced chunking and RAG pipeline.
 
 ### Chunking approach
 **Recursive chunking** (`RecursiveCharacterTextSplitter`)  
-A lightweight, robust all-rounder and safe starting point. It preserves paragraph-level context for Wikipedia-style text to reduce hallucinations and improve attention.
+A lightweight all-rounder and safe starting point and fallback. It preserves paragraph-level context for Wikipedia-style text, reducing hallucinations.  
+
+EDIT: A more advanced layered approach could be: MarkdownHeaderTextSplitter + RecursiveCharacterTextSplitter + Attaching metadata
 
 ### Retrieval approach
 **Dense retrieval**  
 Prioritizing semantic understanding since Wikipedia is linguistically diverse and has concept based content. 
 
 - Model: `sentence-transformers/all-MiniLM-L6-v2` (via `fastembed`)
-- Vector DB: FAISS `IndexFlatIP` with L2 normalization (cosine similarity)
+- Vector DB: FAISS (cosine similarity for Wiki subset)
 
 ### Generation
 **Cloud-based LLM:**  `llama-3.3-70b-versatile` via Groq API  
@@ -91,7 +93,7 @@ Evaluated both manually and using the same Cloud-based LLM used for generation t
 
 ### Interpretation
 The constraint promt is very strict and refuses any out of context information.
-The system showcases strong faithfulness and strong in-context relevance, but
+The results show very strong faithfulness and in-context relevance, but
 very weak out of context relevance. Relevance could be improved with more balanced prompting and fallback "general answer" strategies.
 
 ---
@@ -138,15 +140,14 @@ Addressing current limitations and pipeline improvements
 - Very strict constraint prompt - doesn't allow knowledge outside of context
 - No filtering is being done on vector similarity scores to ensure retrieval quality before generation
 - More challenging evaluation queries should be studied
-- Very basic ingestion and data processing (no provision for Wiki formulas, title separation, references)
+- Very basic ingestion and data processing (no provision for Wiki formulas, markdown headers, references)
 - The system only ingests a small subset of Wikipedia articles, if relevant information is not present in the indexed documents, retrieval will fail and the model may either refuse the query.
 
 For production readiness
 - Add grounding checks/citations
 - Add retry/timeout policies for LLM calls
 - Take LLM API limits / token usage into consideration
-- Add retrieval metrics
-- Add chunking diagnostics
+- Add chunking diagnostics and retrieval evaluation
 - Upgrade logging
 - Add exception handling
 - Add unit testing for future consistency
